@@ -1,0 +1,21 @@
+<template name="cars_detail">
+    <div id="page_cars_details" class="page">
+        {{#with car}}
+        <div class="page_right">
+            {{>model_car}}
+        </div>
+        <h2>The {{make}} {{model}}</h2>
+        <p>
+            Description: {{description}}
+        </p>
+        <br /><br />
+		<p>
+		    If you don't like the description of this car, you can change it by typing this into your console:
+        </p>
+        <code>
+            Cars.update({_id: "{{_id}}"}, {$set: {description: "Goes vroom"}});
+        </code>
+        {{/with}}
+	</div>
+</template>
+

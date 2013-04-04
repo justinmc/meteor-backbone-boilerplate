@@ -1,0 +1,14 @@
+<template name="cars">
+	<div id="page_cars" class="page">
+		<h2>Cars</h2>
+		<p>
+		    Below is a list of all cars in the Meteor Cars collection, using collection and model templates.  You could add to it by typing this into your console:
+        </p>
+        <code>
+            Cars.insert({make: "Shelby", model: "GT500", description: "A cool car", coolness: 3});
+        </code>
+        <br /><br />
+        {{>collection_cars}}
+	</div>
+</template>
+

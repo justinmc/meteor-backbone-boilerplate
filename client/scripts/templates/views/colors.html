@@ -1,0 +1,19 @@
+<template name="colors">
+	<div id="page_colors" class="page">
+		<h2>Colors</h2>
+		<p>
+		    Below is a list of all colors in the Meteor Colors collection.  You could add to it by typing this into your console:
+        </p>
+        <code>
+            Colors.insert({name: "fuchsia"});
+        </code>
+		<br />
+		<br />
+        <ul>
+            {{#each colors}}
+                <li>{{name}}</li>
+            {{/each}}
+        </ul>
+	</div>
+</template>
+
