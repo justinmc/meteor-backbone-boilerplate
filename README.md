@@ -1,4 +1,4 @@
-# meteor-backbone-boilerplate
+# meteor-backbone-boilerplate-ex
 
 <table>
     <tr>
@@ -6,7 +6,7 @@
             Author
         </td>
         <td>
-            [Justin McCandless](http://www.justinmccandless.com)
+            <a href="http://www.justinmccandless.com">Justin McCandless</a>
         </td>
     </tr>
     <tr>
@@ -14,7 +14,7 @@
             Technologies
         </td>
         <td>
-            [Meteor](http://www.meteor.com), [Backbone](http://www.backbonejs.org), and [HTML5 Boilerplate](http://www.html5boilerplate.com/)
+            <a href="http://www.meteor.com">Meteor</a>, <a href="http://www.backbonejs.org">Backbone</a>, and <a href="http://www.html5boilerplate.com/">HTML5 Boilerplate</a>
         </td>
     </tr>
     <tr>
@@ -22,7 +22,7 @@
             Meteor Packages Used
         </td>
         <td>
-            'backbone`, `coffescript`
+            backbone, coffescript
         </td>
     </tr>
     <tr>
@@ -30,7 +30,7 @@
             Live Demo
         </td>
         <td>
-            Coming Soon!
+            <a href="http://backbone-boilerplate.meteor.com/">backbone-boilerplate.meteor.com</a>
         </td>
     </tr>
 </table>
