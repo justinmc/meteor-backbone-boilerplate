@@ -14,7 +14,7 @@
             Technologies
         </td>
         <td>
-            <a href="http://www.meteor.com">Meteor</a>, <a href="http://www.backbonejs.org">Backbone</a>, and <a href="http://www.html5boilerplate.com/">HTML5 Boilerplate</a>
+            <a href="http://www.meteor.com">Meteor</a> 0.6, <a href="http://www.backbonejs.org">Backbone</a>, and <a href="http://www.html5boilerplate.com/">HTML5 Boilerplate</a>
         </td>
     </tr>
     <tr>

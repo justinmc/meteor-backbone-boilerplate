@@ -2,7 +2,7 @@
     Main router for the project
 ###
 
-Router = Backbone.Router.extend
+@Router = Backbone.Router.extend
 
     routes:
         "": "home"

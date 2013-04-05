@@ -2,7 +2,7 @@
     View logic for the home page
 ###
 
-Home = Backbone.View.extend
+@Home = Backbone.View.extend
 
     # The Meteor template used by this view
     template: Template.home()

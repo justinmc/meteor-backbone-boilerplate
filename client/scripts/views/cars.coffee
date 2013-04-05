@@ -2,7 +2,7 @@
     View logic for the Cars page
 ###
 
-ViewCars = Backbone.View.extend
+@ViewCars = Backbone.View.extend
 
     # The Meteor template used by this view
     template: null

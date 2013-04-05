@@ -2,7 +2,7 @@
     View logic for the Colors page
 ###
 
-ViewColors = Backbone.View.extend
+@ViewColors = Backbone.View.extend
 
     # The Meteor template used by this view
     template: null

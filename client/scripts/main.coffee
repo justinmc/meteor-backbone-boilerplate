@@ -3,11 +3,11 @@
 ###
 
 # Create the main app object
-App = {}
+@App = {}
 
 # Create the needed collections on the client side
-Colors = new Meteor.Collection("colors")
-Cars = new Meteor.Collection("cars")
+@Colors = new Meteor.Collection("colors")
+@Cars = new Meteor.Collection("cars")
 
 Meteor.startup () ->
     # Create the backbone router
