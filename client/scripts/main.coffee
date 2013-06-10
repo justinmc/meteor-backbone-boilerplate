@@ -9,8 +9,13 @@
 @Colors = new Meteor.Collection("colors")
 @Cars = new Meteor.Collection("cars")
 
+# Subscribe to the publishes in server/collections
+Meteor.subscribe("colors")
+Meteor.subscribe("cars")
+
 Meteor.startup () ->
-    # Create the backbone router
-    App.router = new Router()
-    Backbone.history.start({pushState: true})
+    $ ->
+        # Create the backbone router
+        App.router = new Router()
+        Backbone.history.start({pushState: true})
 
