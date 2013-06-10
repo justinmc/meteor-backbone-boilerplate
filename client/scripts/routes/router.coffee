@@ -58,4 +58,3 @@
     account: () ->
         @go ViewAccount, true
 
-

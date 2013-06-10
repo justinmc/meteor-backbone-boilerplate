@@ -18,11 +18,10 @@
             loggedIn = Meteor.userId()?
 
             # Get parameters for the user if logged in
-            if loggedIn && Meteor.user()?
-                Template.componentNavbar.username = () ->
-                    return Meteor.user().username
+            if loggedIn && Meteor.user()? && Meteor.user().profile?
+                name = Meteor.user().profile.name
 
-            return Template.componentNavbar({loggedIn: loggedIn})
+            return Template.componentNavbar({loggedIn: loggedIn, name: name})
 
     # Render the view on its $el paramter and return the view itself
     render: () ->

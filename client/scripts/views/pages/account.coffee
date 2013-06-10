@@ -13,7 +13,7 @@
         @template = Meteor.render () ->
             email = Meteor.users.getActiveEmail()
 
-            if Meteor.user()?
+            if Meteor.user()? && Meteor.user().profile?
                 name = Meteor.user().profile.name
 
             return Template.account(user_id: Meteor.userId(), email: email, name: name)
