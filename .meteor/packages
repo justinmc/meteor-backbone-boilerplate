@@ -6,3 +6,5 @@
 preserve-inputs
 backbone
 coffeescript
+accounts-ui
+accounts-password

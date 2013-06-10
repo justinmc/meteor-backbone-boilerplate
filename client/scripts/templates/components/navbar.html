@@ -1,0 +1,25 @@
+<template name="componentNavbar">
+    <a href="/colors">
+        <li>
+            Colors
+        </li>
+    </a>
+    <a href="/cars">
+        <li>
+            Cars
+        </li>
+    </a>
+    {{#if loggedIn}}
+        <a href="/account">
+            <li>
+                {{#if username}}
+                {{username}}'s
+                {{else}}
+                Your
+                {{/if}}
+                Account
+            </li>
+        </a>
+    {{/if}}
+</template>
+

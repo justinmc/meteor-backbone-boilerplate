@@ -19,3 +19,15 @@ Meteor.startup () ->
         App.router = new Router()
         Backbone.history.start({pushState: true})
 
+# Method to get the current user that won't ever throw an undefined error!
+Meteor.users.getActiveEmail = () ->
+    name = ""
+    if Meteor.userId()?
+        if Meteor.user()?
+            if Meteor.user().emails?
+                if Meteor.user().emails[0]?
+                    if Meteor.user().emails[0].address?
+                        name = Meteor.user().emails[0].address
+
+    return name
+

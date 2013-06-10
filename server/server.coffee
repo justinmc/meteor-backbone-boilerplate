@@ -1,5 +1,11 @@
 ###
-    The main server file
+    The main server file, general server side code should go here
 ###
 
-# Any general server setup that isn't specific to a collection should go here
+
+# Set permissions on the users collection
+Meteor.users.allow
+    # A user can update their own record
+    update: (userId, doc) ->
+        return userId == this.userId
+

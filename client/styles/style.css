@@ -35,11 +35,18 @@ body {
             margin-top: 0px;
         }
 
-        #container #header #navbar li {
+        #container #header #navbar-list li {
             display: inline;
             padding: 16px;
             margin: 4px;
             border: 1px #ffffff solid;
+        }
+
+        #container #header #login {
+            float: right;
+            position: relative;
+            top: -38px;
+            margin-right: 8px;
         }
 
     #container #content {

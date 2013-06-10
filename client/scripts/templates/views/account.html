@@ -1,0 +1,31 @@
+<template name="account">
+	<div id="page_account" class="page">
+		<h2>Your Account</h2>
+		<p>
+		    Below is your user info.  Don't have a name yet?  Add one by typing:
+        </p>
+        <code>
+            Meteor.users.update({_id: "{{user_id}}"}, {$set: {profile: {name: "James McMeteor"}}});
+        </code>
+        <br /><br /><br />
+        <table>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    {{email}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    {{name}}
+                </td>
+            </tr>
+        </table>
+	</div>
+</template>
+
