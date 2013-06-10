@@ -45,3 +45,7 @@ You are also not limited to one Backbone view per page, so if you have a navbar 
 
 All of these features are demostrated in the demo, so check it out live at <a href="http://backbone-boilerplate.meteor.com/">backbone-boilerplate.meteor.com</a> or dive into the code to see how it all works.
 
+## Usage
+
+Just clone the repository, run `meteor` in the root directory, and start hacking in your own project like normal.  All that's provided is a starting point for your projects and a basic demo.
+
