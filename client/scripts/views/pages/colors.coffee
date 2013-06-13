@@ -10,12 +10,12 @@
     # Called on creation
     initialize: () ->
         # Use Meteor.render to set our template reactively
-        this.template = Meteor.render () ->
+        @template = Meteor.render () ->
             html = Template.colors({colors: Colors.find()})
             return html
     
     # Render the view on its $el paramter and return the view itself
     render: () ->
-        this.$el = (this.template)
+        @$el = (@template)
         return this
 

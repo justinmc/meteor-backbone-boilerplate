@@ -13,21 +13,21 @@
 Meteor.subscribe("colors")
 Meteor.subscribe("cars")
 
-Meteor.startup () ->
-    $ ->
-        # Create the backbone router
-        App.router = new Router()
-        Backbone.history.start({pushState: true})
-
-# Method to get the current user that won't ever throw an undefined error!
+# Method to get the current user's email that won't ever throw an undefined error!
 Meteor.users.getActiveEmail = () ->
-    name = ""
+    email = ""
     if Meteor.userId()?
         if Meteor.user()?
             if Meteor.user().emails?
                 if Meteor.user().emails[0]?
                     if Meteor.user().emails[0].address?
-                        name = Meteor.user().emails[0].address
+                        email = Meteor.user().emails[0].address
 
-    return name
+    return email
+
+Meteor.startup () ->
+    $ ->
+        # Create the backbone router
+        App.router = new Router()
+        Backbone.history.start({pushState: true})
 

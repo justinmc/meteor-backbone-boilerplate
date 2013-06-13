@@ -22,7 +22,7 @@
             Meteor Packages Used
         </td>
         <td>
-            backbone, coffescript
+            backbone, coffescript, accounts-ui, accounts-password
         </td>
     </tr>
     <tr>

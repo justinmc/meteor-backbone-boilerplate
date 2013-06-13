@@ -20,6 +20,6 @@
     
     # Render the view on its $el paramter and return the view itself
     render: () ->
-        @$el = (this.template)
+        @$el = (@template)
         return this
 
