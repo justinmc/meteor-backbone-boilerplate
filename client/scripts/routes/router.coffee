@@ -78,6 +78,9 @@
         # Route using the Backbone router without a page refresh
         @navigate(route, {trigger: true})
 
+        # Scroll to the top of the new page
+        window.scrollTo(0,0)
+
     # Gets the href attribute from an element, or if null, from the element's first parent that has the attribute
     getHref: (elt) ->
         if elt.hasAttribute("href")
