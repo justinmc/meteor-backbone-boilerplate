@@ -72,9 +72,16 @@
 
         # Parse out the part of the url the router needs
         a = document.createElement("a")
-        a.href = e.target.href
+        a.href = @getHref(e.target)
         route = a.pathname + a.search
 
         # Route using the Backbone router without a page refresh
         @navigate(route, {trigger: true})
+
+    # Gets the href attribute from an element, or if null, from the element's first parent that has the attribute
+    getHref: (elt) ->
+        if elt.hasAttribute("href")
+            return elt.href
+        else
+            return @getHref(elt.parentElement)
 
