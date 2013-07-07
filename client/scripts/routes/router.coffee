@@ -14,18 +14,30 @@
 
     # The current view
     view: null
-    
+
     # Selector for the div that will contain each page
     page_parent_sel: "#content"
 
     # Selector for the container of the login component
     page_header_sel: "#header"
 
+    # Google Analytics instance variable
+    _gaq: null
+
     # Constructor
     initialize: () ->
         # Create a component view that renders in the page template, on every page
         @viewHeader = new ViewHeader()
         $(@page_header_sel).replaceWith(@viewHeader.render().$el)
+
+        # Setup Google Analytics (change UA-XXXXX-X to your own Google Analytics number!)
+        `this._gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));`
+
+        # Bind a Google Analytics track event to every page change
+        @bind 'all', @_trackPageview
 
     # Methods for each route
     home: () ->
@@ -47,7 +59,7 @@
     go: (viewClass, internal, params) ->
         if !viewClass?
             viewClass = Home
-     
+
         # Pages that are "internal" can only be viewed by a logged in user
         me = @
         Deps.autorun () ->
@@ -55,7 +67,7 @@
             if internal? and !Meteor.userId()?
                 me.go Home
                 return
-        
+
         # If all is well, go to the requested page!
         if !internal or Meteor.userId()?
             @view = new viewClass(params)
@@ -87,4 +99,9 @@
             return elt.href
         else
             return @getHref(elt.parentElement)
+
+    # Let Google Analytics know that the page has changed
+    _trackPageview: ->
+        url = Backbone.history.getFragment()
+        @_gaq.push(['_trackPageview', "/#{url}"])
 

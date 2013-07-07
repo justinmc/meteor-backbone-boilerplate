@@ -1,4 +1,4 @@
-# meteor-backbone-boilerplate-ex
+# Meteor Backbone Boilerplate
 
 <table>
     <tr>
@@ -44,6 +44,10 @@ Besides integrating with Backbone's views and router, this project also integrat
 You are also not limited to one Backbone view per page, so if you have a navbar or a custom login system that needs to be rendered reactively, as well as the main page itself, this project will handle eveything easily.
 
 All of these features are demostrated in the demo, so check it out live at <a href="http://backbone-boilerplate.meteor.com/">backbone-boilerplate.meteor.com</a> or dive into the code to see how it all works.
+
+### Google Analytics
+
+Google Analytics support is also built in and ready to go, courtesy of [this airbnb blog post](http://nerds.airbnb.com/how-to-add-google-analytics-page-tracking-to-57536/).  Checkout the Backbone router at `client/scripts/routes/router.coffee` to see the implementation and enter your Analytics code.
 
 ## Usage
 
