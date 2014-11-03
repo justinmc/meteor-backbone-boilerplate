@@ -2,20 +2,21 @@
     View logic for the Colors page
 ###
 
-@ViewColors = Backbone.View.extend
+Meteor.startup ->
 
-    # The Meteor template used by this view
-    template: null
+    Session.setDefault('colorsColor', '')
 
-    # Called on creation
-    initialize: () ->
-        # Use Meteor.render to set our template reactively
-        @template = Meteor.render () ->
-            html = Template.colors({colors: Colors.find()})
-            return html
-    
-    # Render the view on its $el paramter and return the view itself
-    render: () ->
-        @$el = (@template)
-        return this
+    Template.colors.events
+        'submit .form-color': (event, template) ->
+            event.preventDefault()
+            color = Session.get('colorsColor')
+            Colors.insert({name: color});
 
+        'input .color': (event, template) ->
+            Session.set('colorsColor', event.target.value)
+
+    Template.colors.helpers
+        colors: ->
+            return Colors.find()
+        colorPending: ->
+            return Session.get('colorsColor')

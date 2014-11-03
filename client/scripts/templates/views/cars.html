@@ -1,14 +1,26 @@
 <template name="cars">
 	<div id="page_cars" class="page">
-		<h2>Cars</h2>
-		<p>
-		    Below is a list of all cars in the Meteor Cars collection, using collection and model templates.  You could add to it by typing this into your console:
-        </p>
-        <code>
-            Cars.insert({make: "Shelby", model: "GT500", description: "A cool car", coolness: 3});
-        </code>
-        <br /><br />
-        {{>collection_cars}}
+      <h2>Cars</h2>
+      <p>
+      Below is a list of all cars in the Meteor Cars collection, using collection and model templates.  You can add to it below:
+      </p>
+      <form class="form-car">
+          <input class="make" type="text" placeholder="Car make" value="{{carPending.make}}" />
+          <br />
+          <input class="model" type="text" placeholder="Car model" value="{{carPending.model}}" />
+          <br />
+          <textarea rows="3" cols="38" class="description" placeholder="Description of the car">{{carPending.description}}</textarea>
+          <br />
+          <input class="coolness" type="number" placeholder="Coolness level" value="{{carPending.coolness}}" />
+          <br /><br />
+          <button type="submit">Submit</button>
+      </form>
+      <br />
+      <code>
+          Cars.insert({make: "{{carPending.make}}", model: "{{carPending.model}}", description: "{{carPending.description}}", coolness: {{carPending.coolness}}});
+      </code>
+      <br /><br />
+      {{> collectionCars}}
 	</div>
 </template>
 

@@ -2,25 +2,43 @@
     View logic for the Cars page
 ###
 
-@ViewCars = Backbone.View.extend
+Meteor.startup ->
 
-    # The Meteor template used by this view
-    template: null
+    Session.setDefault('carsMake', '')
+    Session.setDefault('carsModel', '')
+    Session.setDefault('carsDescription', '')
+    Session.setDefault('carsCoolness', null)
 
-    # Called on creation
-    initialize: () ->
-        Template.cars.events =
-            # Prevent the page reloading for links
-            "click a": (e) ->
-                App.router.aReplace(e)
+    Template.cars.events =
+        # Prevent the page reloading for links
+        "click a": (e) ->
+            App.router.aReplace(e)
 
-        # Use Meteor.render to set our template reactively
-        @template = Meteor.render () ->
-            html = Template.cars({cars: Cars.find({}, {sort: {coolness: "desc"}})})
-            return html
-    
-    # Render the view on its $el paramter and return the view itself
-    render: () ->
-        @$el = (@template)
-        return this
+        'submit .form-car': (event, template) ->
+            event.preventDefault()
+            make = Session.get('carsMake')
+            model = Session.get('carsModel')
+            description = Session.get('carsDescription')
+            coolness = Session.get('carsCoolness')
+            Cars.insert({make: make, model: model, description: description, coolness: coolness});
 
+        'input .make': (event, template) ->
+            Session.set('carsMake', event.target.value)
+
+        'input .model': (event, template) ->
+            Session.set('carsModel', event.target.value)
+
+        'input .description': (event, template) ->
+            Session.set('carsDescription', event.target.value)
+
+        'input .coolness': (event, template) ->
+            Session.set('carsCoolness', event.target.value)
+
+    Template.cars.helpers
+        carPending: ->
+            return {
+                make: Session.get('carsMake')
+                model: Session.get('carsModel')
+                description: Session.get('carsDescription')
+                coolness: Session.get('carsCoolness')
+            }

@@ -2,18 +2,18 @@
     View logic for the Account page
 ###
 
-Meteor.startup () ->
+Meteor.startup ->
 
     Session.setDefault('accountName', '')
 
     Template.account.events
         'submit .form-name': (event, template) ->
             event.preventDefault()
-            name = template.find('input.name').value
+            name = Session.get('accountName')
             Meteor.users.update({_id: Meteor.userId()}, {$set: {profile: {name: name}}});
 
         'input .name': (event, template) ->
-            Session.set('accountName', template.find('input.name').value)
+            Session.set('accountName', event.target.value)
 
     Template.account.helpers
         userId: Meteor.userId
