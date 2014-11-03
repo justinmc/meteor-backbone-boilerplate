@@ -2,24 +2,24 @@
     View logic for the Account page
 ###
 
-@ViewAccount = Backbone.View.extend
+Meteor.startup () ->
 
-    # The Meteor template used by this view
-    template: null
+    Session.setDefault('accountName', '')
 
-    # Called on creation
-    initialize: () ->
-        # Use Meteor.render to set our template reactively
-        @template = Meteor.render () ->
-            email = Meteor.users.getActiveEmail()
+    Template.account.events
+        'submit .form-name': (event, template) ->
+            event.preventDefault()
+            name = template.find('input.name').value
+            Meteor.users.update({_id: Meteor.userId()}, {$set: {profile: {name: name}}});
 
+        'input .name': (event, template) ->
+            Session.set('accountName', template.find('input.name').value)
+
+    Template.account.helpers
+        userId: Meteor.userId
+        email: Meteor.users.getActiveEmail
+        namePending: ->
+            return Session.get('accountName')
+        name: ->
             if Meteor.user()? && Meteor.user().profile?
-                name = Meteor.user().profile.name
-
-            return Template.account(user_id: Meteor.userId(), email: email, name: name)
-    
-    # Render the view on its $el paramter and return the view itself
-    render: () ->
-        @$el = (@template)
-        return this
-
+                return Meteor.user().profile.name

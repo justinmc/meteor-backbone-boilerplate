@@ -1,31 +1,22 @@
 <template name="account">
 	<div id="page_account" class="page">
-		<h2>Your Account</h2>
-		<p>
-		    Below is your user info.  Don't have a name yet?  Add one by typing:
-        </p>
-        <code>
-            Meteor.users.update({_id: "{{user_id}}"}, {$set: {profile: {name: "James McMeteor"}}});
-        </code>
-        <br /><br /><br />
-        <table>
-            <tr>
-                <td>
-                    Email:
-                </td>
-                <td>
-                    {{email}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Name:
-                </td>
-                <td>
-                    {{name}}
-                </td>
-            </tr>
-        </table>
+      <h2>Your Account</h2>
+      <p>
+          Below is your user info.  Don't have a name yet?  Add one:
+      </p>
+      <form class="form-name">
+          <input class="name" type="text" placeholder="Update your name" value="{{namePending}}" />
+          <button type="submit">Submit</button>
+      </form>
+      <br />
+      <code>
+          Meteor.users.update({_id: "{{userId}}"}, {$set: {profile: {name: "{{namePending}}"}}});
+      </code>
+      <br /><br /><br />
+      <ul>
+          <li><b>Email:</b> {{email}}</li>
+          <li><b>Name:</b> {{name}}</li>
+      </ul>
 	</div>
 </template>
 

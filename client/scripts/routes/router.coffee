@@ -12,23 +12,24 @@
         "account": "account"
         "*path": "home" # For any other path, go home
 
-    # The current view
-    view: null
+    # The container element that pages are swapped in
+    container: null
+    containerSelector: "#content"
 
-    # Selector for the div that will contain each page
-    page_parent_sel: "#content"
-
-    # Selector for the container of the login component
-    page_header_sel: "#header"
+    # The container of the login component
+    header: null
+    headerSelector: "#header"
 
     # Google Analytics instance variable
     _gaq: null
 
     # Constructor
     initialize: () ->
+        @container = $(@containerSelector).get(0)
+        @header = $(@headerSelector).get(0)
+
         # Create a component view that renders in the page template, on every page
-        @viewHeader = new ViewHeader()
-        $(@page_header_sel).replaceWith(@viewHeader.render().$el)
+        Blaze.render(Template.componentHeader, @header);
 
         # Setup Google Analytics (change UA-XXXXX-X to your own Google Analytics number!)
         `this._gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -41,41 +42,41 @@
 
     # Methods for each route
     home: () ->
-        @.go Home
+        @.go Template.home
 
     colors: () ->
-        @.go ViewColors
+        @.go Template.colors
 
     cars: () ->
-        @.go ViewCars
+        @.go Template.cars
 
     cars_car: (id) ->
-        @.go ViewCarsDetail, false, id
+        @.go Template.carsDetail, false, id
 
     account: () ->
-        @go ViewAccount, true
+        @go Template.account, true
 
     # Actually changes the page by creating the view and inserting it
-    go: (viewClass, internal, params) ->
-        if !viewClass?
-            viewClass = Home
+    go: (template, internal, params) ->
+        if !template?
+            template = Template.home
 
         # Pages that are "internal" can only be viewed by a logged in user
         me = @
         Deps.autorun () ->
             # If a user tries to visit an internal page, redirect to home
             if internal? and !Meteor.userId()?
-                me.go Home
+                me.go Template.home
                 return
 
         # If all is well, go to the requested page!
         if !internal or Meteor.userId()?
-            @view = new viewClass(params)
-            @render()
+            @render(template)
 
     # Render the current view
-    render: () ->
-        $(@page_parent_sel).html(@view.render().$el)
+    render: (template) ->
+        @container.innerHTML = ''
+        Blaze.render(template, @container)
 
     # Method to replace an anchor tag event with a Backbone route event
     aReplace: (e) ->
@@ -94,11 +95,11 @@
         window.scrollTo(0,0)
 
     # Gets the href attribute from an element, or if null, from the element's first parent that has the attribute
-    getHref: (elt) ->
-        if elt.hasAttribute("href")
-            return elt.href
-        else
-            return @getHref(elt.parentElement)
+    getHref: (el) ->
+        if el? and el.hasAttribute("href")
+            return el.href
+        else if el?
+            return @getHref(el.parentElement)
 
     # Let Google Analytics know that the page has changed
     _trackPageview: ->
