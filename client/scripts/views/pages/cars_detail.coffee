@@ -2,24 +2,31 @@
     View logic for the Cars detail page
 ###
 
-@ViewCarsDetail = Backbone.View.extend
+Meteor.startup ->
 
-    # The Meteor template used by this view
-    template: null
+    # Here's how you might clear the temporary description when the page is opened again
+    Template.carsDetail.created = ->
+        Session.set('carsDetailDescription', '')
 
-    # Called on creation
-    initialize: (id) ->
-        Template.cars_detail.events =
-            # Prevent the page reloading for links
-            "click a": (e) ->
-                App.router.aReplace(e)
+    getId = ->
+        templateData = Session.get('templateData')
+        return if templateData then templateData.id else ''
 
-        # Use Meteor.render to set our template reactively
-        @template = Meteor.render () ->
-            return Template.cars_detail({car: Cars.findOne({_id: id})})
-    
-    # Render the view on its $el paramter and return the view itself
-    render: () ->
-        @$el = (@template)
-        return this
+    Template.carsDetail.events =
+        # Prevent the page reloading for links
+        "click a": (e) ->
+            App.router.aReplace(e)
 
+        'submit .form-description': (event, template) ->
+            event.preventDefault()
+            description = Session.get('carsDetailDescription')
+            Cars.update({_id: getId()}, {$set: {description: description}});
+
+        'input .description': (event, template) ->
+            Session.set('carsDetailDescription', event.target.value)
+
+    Template.carsDetail.helpers
+        car: ->
+            return Cars.findOne({_id: getId()})
+        descriptionPending: ->
+            return Session.get('carsDetailDescription');

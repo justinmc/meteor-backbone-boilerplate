@@ -1,19 +1,22 @@
-<template name="cars_detail">
+<template name="carsDetail">
     <div id="page_cars_details" class="page">
         {{#with car}}
         <div class="page_right">
-            {{>model_car}}
+            {{> modelCar}}
         </div>
         <h2>The {{make}} {{model}}</h2>
         <p>
             Description: {{description}}
         </p>
         <br /><br />
-		<p>
-		    If you don't like the description of this car, you can change it by typing this into your console:
-        </p>
+        <p>If you don't like the description of this car, you can change it below:</p>
+        <form class="form-description">
+            <textarea class="description" type="text" placeholder="Car description" value="">{{descriptionPending}}</textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <br />
         <code>
-            Cars.update({_id: "{{_id}}"}, {$set: {description: "Goes vroom"}});
+            Cars.update({_id: "{{_id}}"}, {$set: {description: "{{descriptionPending}}");
         </code>
         {{/with}}
 	</div>

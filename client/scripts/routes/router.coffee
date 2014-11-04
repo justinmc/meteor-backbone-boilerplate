@@ -51,13 +51,13 @@
         @.go Template.cars
 
     cars_car: (id) ->
-        @.go Template.carsDetail, false, id
+        @.go Template.carsDetail, false, {id: id}
 
     account: () ->
         @go Template.account, true
 
     # Actually changes the page by creating the view and inserting it
-    go: (template, internal, params) ->
+    go: (template, internal, templateData) ->
         if !template?
             template = Template.home
 
@@ -71,6 +71,8 @@
 
         # If all is well, go to the requested page!
         if !internal or Meteor.userId()?
+            # Set data for this template to use
+            Session.set('templateData', templateData || {})
             @render(template)
 
     # Render the current view
